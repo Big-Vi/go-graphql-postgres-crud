@@ -1,2 +1,6 @@
-# go-graphql-postgres-crud
-Using gqlgen to create GraphQL server with Postgres
+## Installing gqlgen
+
+- go mod init
+- go install github.com/99designs/gqlgen@latest
+- go run github.com/99designs/gqlgen init --verbose
+- go run server.go
