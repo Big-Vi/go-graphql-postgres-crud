@@ -13,12 +13,36 @@ import (
 
 // CreateTodo is the resolver for the createTodo field.
 func (r *mutationResolver) CreateTodo(ctx context.Context, input model.NewTodo) (*model.Todo, error) {
-	panic(fmt.Errorf("not implemented"))
+	todo := &model.Todo{
+		ID:   fmt.Sprint((len(r.TodosList) + 1)),
+		Text: input.Text,
+		Done: false,
+		User: &model.User{
+			ID:   input.UserID,
+			Name: fmt.Sprintf("name %s", fmt.Sprint((len(r.TodosList) + 1))),
+		},
+	}
+	r.TodosList = append(r.TodosList, todo)
+	return todo, nil
+
+	// panic(fmt.Errorf("not implemented"))
 }
 
 // Todos is the resolver for the todos field.
 func (r *queryResolver) Todos(ctx context.Context) ([]*model.Todo, error) {
-	panic(fmt.Errorf("not implemented"))
+	// return []*model.Todo{
+	// 	&model.Todo{
+	// 		ID:   "123",
+	// 		Text: "test",
+	// 		Done: false,
+	// 		User: &model.User{
+	// 			ID:   "user",
+	// 			Name: "name",
+	// 		},
+	// 	},
+	// }, nil
+	return r.TodosList, nil
+	// panic(fmt.Errorf("not implemented"))
 }
 
 // Mutation returns generated.MutationResolver implementation.
