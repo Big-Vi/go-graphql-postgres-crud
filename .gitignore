@@ -4,6 +4,16 @@
 *.dll
 *.so
 *.dylib
+*.zip
+*.env
+*.o
+
+**/*
+!**/*.go
+!**/
+!*.yml
+!*.json
+!Dockerfile
 
 # Test binary, built with `go test -c`
 *.test

@@ -11,7 +11,7 @@ import (
 	"github.com/big-vi/go-graphql-postgres-crud/graph/generated"
 )
 
-const defaultPort = "8080"
+const defaultPort = "8000"
 
 func main() {
 	port := os.Getenv("PORT")

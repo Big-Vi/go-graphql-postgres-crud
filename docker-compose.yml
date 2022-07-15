@@ -1,0 +1,36 @@
+version: "3.8"
+
+services:
+  app:
+    container_name: go-graphql-postgres-crud
+    image: go-graphql-postgres-crud
+    build:
+      context: .
+      target: development
+    volumes:
+      - .:/app
+    depends_on:
+      - database
+    networks:
+      - go-graphql-postgres-crud_net
+    ports:
+      - 8000:8000
+  database:
+    image: postgres
+    restart: always
+    hostname: db
+    networks:
+      - go-graphql-postgres-crud_net
+    env_file:
+      - .env
+    ports:
+      - "3000:5432"
+    volumes:
+      - db-data:/var/lib/postgresql/data
+
+volumes:
+  db-data:
+
+networks:
+  go-graphql-postgres-crud_net:
+    driver: bridge
