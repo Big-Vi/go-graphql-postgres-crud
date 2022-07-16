@@ -6,7 +6,7 @@ import (
 	"os"
 	"context"
 
-	"github.com/big-vi/go-graphql-postgres-crud/internal/pg"
+	"github.com/big-vi/go-graphql-postgres-crud/internal/postgres"
 	"github.com/big-vi/go-graphql-postgres-crud/graph"
 	"github.com/big-vi/go-graphql-postgres-crud/graph/generated"
 	"github.com/big-vi/go-graphql-postgres-crud/graph/model"
