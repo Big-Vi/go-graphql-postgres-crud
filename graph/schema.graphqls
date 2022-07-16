@@ -3,10 +3,9 @@
 # https://gqlgen.com/getting-started/
 
 type Todo {
-  id: ID!
+  id: String!
   text: String!
   done: Boolean!
-  user: User!
 }
 
 type User {
@@ -16,13 +15,24 @@ type User {
 
 type Query {
   todos: [Todo!]!
+  todo(id: ID!): Todo
 }
 
 input NewTodo {
   text: String!
-  userId: String!
+  done: Boolean
 }
 
 type Mutation {
   createTodo(input: NewTodo!): Todo!
+  updateTodo(id: ID!, updatedTodo: NewTodo!): Todo!
+  deleteTodo(id: ID!): ID! @hasRole(role: ADMIN)
+}
+
+"Prevents access to a field if the user doesnt have the matching role"
+directive @hasRole(role: Role!) on FIELD_DEFINITION
+
+enum Role {
+  ADMIN
+  USER
 }
